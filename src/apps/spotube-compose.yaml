@@ -1,0 +1,18 @@
+name: spotube
+
+services:
+  spotube:
+    image: lscr.io/linuxserver/spotube:latest
+    container_name: spotube
+    # security_opt:
+    #   - seccomp:unconfined
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TIMEZONE}
+    volumes:
+      - ${APP_CONFIG_DIR}/spotube:/config
+    ports:
+      - 3000:3000
+      - 3001:3001
+    restart: unless-stopped
